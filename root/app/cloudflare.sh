@@ -21,6 +21,15 @@ cloudflare() {
   fi
 }
 
+webhook() {
+  if [ ! -z "$WEBHOOK_URL" ]; then
+    curl -sSL \
+    -H "Accept: application/json" \
+    -H "Content-Type: application/json" \
+    "$@"
+  fi
+}
+
 getLocalIpAddress() {
   if [ "$RRTYPE" == "A" ]; then
     IP_ADDRESS=$(ip addr show $INTERFACE | awk '$1 == "inet" {gsub(/\/.*$/, "", $2); print $2; exit}')
@@ -97,6 +106,7 @@ createDnsRecord() {
   fi
 
   cloudflare -X POST -d "{\"type\": \"$RRTYPE\",\"name\":\"$2\",\"content\":\"$3\",\"proxied\":$PROXIED,\"ttl\":1 }" "$CF_API/zones/$1/dns_records" | jq -r '.result.id'
+  webhook -X POST --data "{\"content\": \"$2 created with IP $3\"}" "$WEBHOOK_URL"
 }
 
 updateDnsRecord() {
@@ -105,12 +115,15 @@ updateDnsRecord() {
   fi
 
   cloudflare -X PATCH -d "{\"type\": \"$RRTYPE\",\"name\":\"$3\",\"content\":\"$4\",\"proxied\":$PROXIED }" "$CF_API/zones/$1/dns_records/$2" | jq -r '.result.id'
+  webhook -X POST --data "{\"content\": \"$3 updated to $4\"}" "$WEBHOOK_URL"
 }
 
 deleteDnsRecord() {
   cloudflare -X DELETE "$CF_API/zones/$1/dns_records/$2" | jq -r '.result.id'
+  webhook -X POST --data "{\"content\": \"Deleted record $2\"}" "$WEBHOOK_URL"
 }
 
 getDnsRecordIp() {
   cloudflare "$CF_API/zones/$1/dns_records/$2" | jq -r '.result.content'
 }
+
