@@ -23,6 +23,7 @@ docker run \
   -e API_KEY=xxxxxxx \
   -e ZONE=example.com \
   -e SUBDOMAIN=subdomain \
+  -e WEBHOOK_URL=https://discord.com/blah \
   oznu/cloudflare-ddns
 ```
 
