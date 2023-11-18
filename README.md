@@ -18,7 +18,7 @@ docker run \
   -e ZONE=example.com \
   -e SUBDOMAIN=subdomain \
   -e WEBHOOK_URL=https://discord.com/blah \
-  oznu/cloudflare-ddns
+  two70/docker-cloudflare-ddns
 ```
 
 ## Parameters
