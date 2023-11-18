@@ -1,18 +1,12 @@
-[![Travis](https://img.shields.io/travis/oznu/docker-cloudflare-ddns.svg)](https://travis-ci.org/oznu/docker-cloudflare-ddns) [![Docker Pulls](https://img.shields.io/docker/pulls/oznu/cloudflare-ddns.svg)](https://hub.docker.com/r/oznu/cloudflare-ddns/)
+# Originally pulled from oznu/cloudflare-ddns
+
+Since the main repo is no longer maintained, I forked it to add some functinality I would like to see, such as dates in logging (wip) and Discord webhooks.
 
 # Docker CloudFlare DDNS
 
 This small Alpine Linux based Docker image will allow you to use the free [CloudFlare DNS Service](https://www.cloudflare.com/dns/) as a Dynamic DNS Provider ([DDNS](https://en.wikipedia.org/wiki/Dynamic_DNS)).
 
 This is a multi-arch image and will run on amd64, aarch64, and armhf devices, including the Raspberry Pi.
-
-## Image Variants
-
-| Image Tag      | Architecture  | OS            | Size   |
-| :------------- | :-------------| :------------ | :----  |
-| latest         | x64           | Alpine Linux  | [![](https://images.microbadger.com/badges/image/oznu/cloudflare-ddns.svg)](https://microbadger.com/images/oznu/cloudflare-ddns) |
-| armhf          | arm32v6       | Alpine Linux  | [![](https://images.microbadger.com/badges/image/oznu/cloudflare-ddns:armhf.svg)](https://microbadger.com/images/oznu/cloudflare-ddns:armhf) |
-| aarch64        | arm64         | Alpine Linux  | [![](https://images.microbadger.com/badges/image/oznu/cloudflare-ddns:aarch64.svg)](https://microbadger.com/images/oznu/cloudflare-ddns:aarch64) |
 
 ## Usage
 
@@ -46,6 +40,7 @@ docker run \
 * `-e CUSTOM_LOOKUP_CMD="echo '1.1.1.1'"` - Set to any shell command to run them and have the IP pulled from the standard output. Leave unset to use default IP address detection methods.
 * `-e DNS_SERVER=10.0.0.2` - Set to the IP address of the DNS server you would like to use. Defaults to 1.1.1.1 otherwise. 
 * `-e CRON="@daily"` - Set your own custom CRON value before the exec portion. Defaults to every 5 minutes - `*/5 * * * *`.
+* `-e WEBHOOK_URL` - Webhook URL to send updated IP information to. Currently only supports Discord
 
 ## Depreciated Parameters
 
@@ -81,13 +76,15 @@ If you prefer to use [Docker Compose](https://docs.docker.com/compose/):
 version: '2'
 services:
   cloudflare-ddns:
-    image: oznu/cloudflare-ddns:latest
+    image: two70/docker-cloudflare-ddns
     restart: always
     environment:
-      - API_KEY=xxxxxxx
-      - ZONE=example.com
+      - API_KEY=<apikey>
+      - ZONE=<mydomain>
       - SUBDOMAIN=subdomain
-      - PROXIED=false
+      - PROXIED=true
+      - WEBHOOK_URL=https://discord.com/<mywebhook>
+      - TZ=America/Denver
 ```
 
 ## License
