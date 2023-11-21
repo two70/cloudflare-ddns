@@ -1,4 +1,4 @@
-# Originally pulled from oznu/cloudflare-ddns
+# Originally forked from oznu/docker-cloudflare-ddns
 
 Since the main repo is no longer maintained, I forked it to add some functinality I would like to see, such as dates in logging (wip) and Discord webhooks.
 
