@@ -2,6 +2,8 @@
 
 Since the main repo is no longer maintained, I forked it to add some functinality I would like to see, such as dates in logging (wip) and Discord webhooks.
 
+[![Docker Image CI](https://github.com/two70/docker-cloudflare-ddns/actions/workflows/docker-image.yml/badge.svg)](https://github.com/two70/docker-cloudflare-ddns/actions/workflows/docker-image.yml)
+
 # Docker CloudFlare DDNS
 
 This small Alpine Linux based Docker image will allow you to use the free [CloudFlare DNS Service](https://www.cloudflare.com/dns/) as a Dynamic DNS Provider ([DDNS](https://en.wikipedia.org/wiki/Dynamic_DNS)).
