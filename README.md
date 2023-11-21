@@ -1,6 +1,6 @@
 # Originally forked from oznu/docker-cloudflare-ddns
 
-Since the main repo is no longer maintained, I forked it to add some functinality I would like to see, such as dates in logging (wip) and Discord webhooks.
+Since the main repo is no longer maintained, I forked it to add some functinality I would like to see, such as dates in logging and Discord webhooks.
 
 [![Docker Image CI](https://github.com/two70/docker-cloudflare-ddns/actions/workflows/docker-image.yml/badge.svg)](https://github.com/two70/docker-cloudflare-ddns/actions/workflows/docker-image.yml)
 
