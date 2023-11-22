@@ -2,7 +2,7 @@
 
 Since the main repo is no longer maintained, I forked it to add some functinality I would like to see, such as dates in logging and Discord webhooks.
 
-[![Docker Image CI](https://github.com/two70/docker-cloudflare-ddns/actions/workflows/docker-image.yml/badge.svg)](https://github.com/two70/docker-cloudflare-ddns/actions/workflows/docker-image.yml)
+[![Docker](https://github.com/two70/cloudflare-ddns/actions/workflows/docker-publish.yml/badge.svg)](https://github.com/two70/cloudflare-ddns/actions/workflows/docker-publish.yml)
 
 # Docker CloudFlare DDNS
 
