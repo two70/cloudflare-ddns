@@ -20,7 +20,7 @@ docker run \
   -e ZONE=example.com \
   -e SUBDOMAIN=subdomain \
   -e WEBHOOK_URL=https://discord.com/blah \
-  two70/docker-cloudflare-ddns
+  ghcr.io/two70/cloudflare-ddns
 ```
 
 ## Parameters
@@ -78,7 +78,7 @@ If you prefer to use [Docker Compose](https://docs.docker.com/compose/):
 version: '2'
 services:
   cloudflare-ddns:
-    image: two70/docker-cloudflare-ddns
+    image: ghcr.io/two70/cloudflare-ddns
     restart: always
     environment:
       - API_KEY=<apikey>
