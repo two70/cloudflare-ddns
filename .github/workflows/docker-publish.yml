@@ -18,6 +18,8 @@ env:
   REGISTRY: ghcr.io
   # github.repository as <account>/<repo>
   IMAGE_NAME: ${{ github.repository }}
+  # Alpine version
+  ALPINE_VERSION: 3.18.4
 
 
 jobs:
@@ -83,7 +85,7 @@ jobs:
             ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
           tags: |
             # use custom value instead of git tag
-            type=semver,pattern={{version}},value=v3.18.1
+            type=semver,pattern={{version}},value=${{env.ALPINE_VERSION}}
 
       # Build and push Docker image with Buildx (don't push on PR)
       # https://github.com/docker/build-push-action
