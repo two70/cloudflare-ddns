@@ -92,6 +92,7 @@ if [ "$CFDnsRecordId" == "null" ]; then
     exit 1
   fi
 
+  webhook -X POST --data "{\"content\": \"$CFDnsRecordName created with IP $PublicIpAddress\"}" "$WEBHOOK_URL"
 fi
 
 echo "DNS Record: $CFDnsRecordName ($CFDnsRecordId)"

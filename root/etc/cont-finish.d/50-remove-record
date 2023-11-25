@@ -13,6 +13,7 @@ if [ "$DELETE_ON_STOP" == "true" ]; then
   if [ "$update" == "null" ]; then
     echo "ERROR: Failed to delete CloudFlare DNS record $CF_RECORD_NAME"
   else
+    webhook -X POST --data "{\"content\": \"Deleted record $CF_RECORD_NAME\"}" "$WEBHOOK_URL"
     echo "CloudFlare DNS record $CF_RECORD_NAME deleted successfully."
   fi
 else

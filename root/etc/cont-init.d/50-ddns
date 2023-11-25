@@ -22,6 +22,7 @@ if [ "$CurrentIpAddress" != "$DnsIpAddress" ]; then
   if [ "$update" == "null" ]; then
     echo "$now: ERROR: Failed to update CloudFlare DNS record $CF_RECORD_NAME from $DnsIpAddress to $CurrentIpAddress"
   else
+    webhook -X POST --data "{\"content\": \"$CF_RECORD_NAME updated to $CurrentIpAddress\"}" "$WEBHOOK_URL"
     echo "$now: CloudFlare DNS record $CF_RECORD_NAME ($CurrentIpAddress) updated successfully."
   fi
   
