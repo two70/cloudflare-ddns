@@ -19,7 +19,7 @@ env:
   # github.repository as <account>/<repo>
   IMAGE_NAME: ${{ github.repository }}
   # Alpine version
-  ALPINE_VERSION: 3.18.4
+  ALPINE_VERSION: 3.20.3
 
 
 jobs:
